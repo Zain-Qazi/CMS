@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Website Demo</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f4f6f9; color: #333; }
+        .container { max-width: 800px; margin: auto; }
+        .header-card { background: linear-gradient(135deg, #0078d4, #005a9e); color: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin-bottom: 25px; }
+        .header-card h1 { margin: 0 0 10px 0; font-size: 2rem; }
+        .header-card p { margin: 5px 0; font-size: 1.1rem; opacity: 0.9; }
+        .contact-info { margin-top: 15px; font-weight: 500; font-size: 0.95rem; }
+        .services-title { font-size: 1.5rem; margin-bottom: 15px; color: #1e293b; }
+        .service-card { background: white; padding: 20px; border-radius: 10px; margin-bottom: 15px; border-left: 5px solid #0078d4; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .service-card h3 { margin: 0 0 8px 0; color: #0078d4; }
+        .service-card p { margin: 0; color: #64748b; font-size: 0.95rem; }
+        .loading { text-align: center; padding: 40px; font-size: 1.2rem; color: #666; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="content" style="display: none;">
+            <div class="header-card">
+                <h1 id="business-name"></h1>
+                <p id="tagline"></p>
+                <div class="contact-info">
+                    📞 <span id="phone"></span> | ✉️ <span id="email"></span>
+                </div>
+            </div>
+
+            <h2 class="services-title">Our Services</h2>
+            <div id="services-list"></div>
+        </div>
+
+        <div id="loading" class="loading">
+            Loading site content from <code>data.json</code>...
+        </div>
+    </div>
+
+    <script>
+        // Fetch JSON data dynamically (Cache-busting added)
+        fetch('data.json?t=' + new Date().getTime())
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('business-name').innerText = data.business_name;
+                document.getElementById('tagline').innerText = data.tagline;
+                document.getElementById('phone').innerText = data.phone;
+                document.getElementById('email').innerText = data.email;
+
+                const servicesContainer = document.getElementById('services-list');
+                servicesContainer.innerHTML = '';
+                
+                data.services.forEach(service => {
+                    servicesContainer.innerHTML += `
+                        <div class="service-card">
+                            <h3>${service.title}</h3>
+                            <p>${service.description}</p>
+                        </div>
+                    `;
+                });
+
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            })
+            .catch(err => {
+                document.getElementById('loading').innerHTML = '<b style="color:red;">Error loading content. Make sure data.json exists.</b>';
+                console.error('Error fetching data:', err);
+            });
+    </script>
+</body>
+</html>

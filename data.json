@@ -1,0 +1,20 @@
+{
+  "business_name": "Apex Digital Solutions",
+  "tagline": "Empowering Small Businesses with Modern Tech",
+  "phone": "+92 300 1234567",
+  "email": "contact@apexdigital.com",
+  "services": [
+    {
+      "title": "Web Development",
+      "description": "Custom, lightning-fast static and dynamic websites."
+    },
+    {
+      "title": "Mobile App Development",
+      "description": "Cross-platform Android & iOS applications."
+    },
+    {
+      "title": "Cloud Strategy",
+      "description": "Zero-cost architecture for startups and small businesses."
+    }
+  ]
+}
