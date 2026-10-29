@@ -6,15 +6,18 @@
   "services": [
     {
       "title": "Web Development",
-      "description": "Custom, lightning-fast static and dynamic websites."
+      "description": "Custom, lightning-fast static and dynamic websites.",
+      "price" : 3000
     },
     {
       "title": "Mobile App Development",
-      "description": "Cross-platform Android & iOS applications."
+      "description": "Cross-platform Android & iOS applications.",
+      "price" : 4000
     },
     {
       "title": "Cloud Strategy",
-      "description": "Zero-cost architecture for startups and small businesses."
+      "description": "Zero-cost architecture for startups and small businesses.",
+      "price" : 5000
     }
   ]
 }
