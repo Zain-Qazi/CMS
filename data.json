@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "services": [
     {
@@ -14,3 +15,6 @@
     }
   ]
 }
+=======
+{"business_name":"Taiba Garments","tagline":"Tilak inclient","phone":"+92 300 1234567","email":"contact@apexdigital.com","services":[{"title":"Stitched Suits","price":"200","description":"Ready to wear designer garments."},{"title":"Test Service","price":"10","description":"Test Description"}]}
+>>>>>>> d004576177c863b90e224e6894c48cd5aa307093
