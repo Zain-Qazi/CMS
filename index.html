@@ -3,73 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Website Demo</title>
-    <style>
-        * { box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f4f6f9; color: #333; }
-        .container { max-width: 800px; margin: auto; }
-        .header-card { background: linear-gradient(135deg, #0078d4, #005a9e); color: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin-bottom: 25px; }
-        .header-card h1 { margin: 0 0 10px 0; font-size: 2rem; }
-        .header-card p { margin: 5px 0; font-size: 1.1rem; opacity: 0.9; }
-        .contact-info { margin-top: 15px; font-weight: 500; font-size: 0.95rem; }
-        .services-title { font-size: 1.5rem; margin-bottom: 15px; color: #1e293b; }
-        .service-card { background: white; padding: 20px; border-radius: 10px; margin-bottom: 15px; border-left: 5px solid #0078d4; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .service-card h3 { margin: 0 0 8px 0; color: #0078d4; }
-        .service-card p { margin: 0; color: #64748b; font-size: 0.95rem; }
-        .loading { text-align: center; padding: 40px; font-size: 1.2rem; color: #666; }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <div id="content" style="display: none;">
-            <div class="header-card">
-                <h1 id="business-name"></h1>
-                <p id="tagline"></p>
-                <div class="contact-info">
-                    📞 <span id="phone"></span> | ✉️ <span id="email"></span>
-                </div>
-            </div>
-
-            <h2 class="services-title">Our Services</h2>
-            <div id="services-list"></div>
-        </div>
-
-        <div id="loading" class="loading">
-            Loading site content from <code>data.json</code>...
-        </div>
-    </div>
-
-    <script>
-        // Fetch JSON data dynamically (Cache-busting added)
-        fetch('data.json?t=' + new Date().getTime())
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('business-name').innerText = data.business_name;
-                document.getElementById('tagline').innerText = data.tagline;
-                document.getElementById('phone').innerText = data.phone;
-                document.getElementById('email').innerText = data.email;
-
-                const servicesContainer = document.getElementById('services-list');
-                servicesContainer.innerHTML = '';
-                
-                data.services.forEach(service => {
-                    servicesContainer.innerHTML += `
-                        <div class="service-card">
-                            <h3>${service.title}</h3>
-                            <p>${service.description}</p>
-                            <p>${service.price}</p>
-                        </div>
-                    `;
-                });
-
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('content').style.display = 'block';
-            })
-            .catch(err => {
-                document.getElementById('loading').innerHTML = '<b style="color:red;">Error loading content. Make sure data.json exists.</b>';
-                console.error('Error fetching data:', err);
-            });
+    <title id="meta-title">Taiba Garments</title>
+    <meta name="description" id="meta-desc" content="">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AEO / GEO Schema Markup (LocalBusiness & Organization) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ClothingStore",
+      "name": "Taiba Garments",
+      "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8",
+      "telephone": "+92 300 1234567",
+      "email": "contact@taibagarments.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Main Market",
+        "addressLocality": "Lahore",
+        "addressCountry": "PK"
+      },
+      "openingHours": "Mo-Sa 10:00-21:00",
+      "priceRange": "PKR"
+    }
     </script>
+</head>
+<body data-page="home">
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <h1 id="brand-name" class="logo">Taiba Garments</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h2 id="hero-title">Loading...</h2>
+            <p id="hero-subtitle">Loading...</p>
+            <a href="#products" id="cta-btn" class="btn">View Collections</a>
+        </div>
+    </section>
+
+    <section id="products" class="section">
+        <div class="container">
+            <h2 id="services-heading" class="section-title">Our Collections</h2>
+            <div id="services-grid" class="services-grid">
+                <!-- Dynamically Loaded via JS -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Taiba Garments. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
